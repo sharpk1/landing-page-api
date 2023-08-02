@@ -23,8 +23,8 @@ app.post("/api/send-email", (req, res) => {
 
   // Create the email message
   const message = {
-    from:  process.env.EMAIL_USER,
-    to:  process.env.EMAIL_USER,
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     subject: "New project inquiry",
     html: `
       <p>First Name: ${formData.firstName}</p>
@@ -39,7 +39,9 @@ app.post("/api/send-email", (req, res) => {
   transporter.sendMail(message, (error, info) => {
     if (error) {
       console.error("Error sending email:", error);
-      res.status(500).json({ error: "An error occurred while sending the email" });
+      res
+        .status(500)
+        .json({ error: "An error occurred while sending the email" });
     } else {
       console.log("Email sent:", info.response);
       res.status(200).json({ message: "Email sent successfully" });
